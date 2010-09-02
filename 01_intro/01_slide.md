@@ -4,10 +4,11 @@
 
 ### Mathias Meyer ###
 
-!SLIDE bullets incremental
+!SLIDE bullets
 # $(this) #
 
 * Mathias Meyer
+* Chief Sharding Officer at [Peritor](http://peritor.com)
 * <http://paperplanes.de>
 * [@roidrage](http://twitter.com/roidrage)
 * <http://github.com/mattmatt>

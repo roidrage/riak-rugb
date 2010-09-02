@@ -2,7 +2,7 @@
 
 # What's Riak? #
 
-* Key-Value Store
+* Key-Value Database
 * Distributed
 * Scalable
 * Really, really scalable
@@ -22,9 +22,9 @@
 # Basics #
 
 * Data is partitioned into slices
-* Partition = virtual node
+* Partition = virtual node/vnode
 * Hashed on a 160 bit integer space
-* A server can serve multiple slices
+* One physical node = multiple vnodes
 
 !SLIDE center
 
@@ -35,6 +35,7 @@
 # Consistent Hashing #
 
 * Determines partition from key
+* Used to find an object's node
 
 !SLIDE bullets incremental
 
@@ -91,7 +92,7 @@
 
 * Any type (binary)
 * Or JSON documents
-* Limited to ~60 MB
+* Limited to 50-60 MB
 
 !SLIDE bullets incremental
 
