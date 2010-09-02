@@ -2,6 +2,8 @@
   "name": "Riak",
   "sections": [
     {"section": "01_intro"},
-    {"section": "02_whats_riak"}
+    {"section": "02_whats_riak"},
+    {"section": "03_ruby_and_riak"},
+    {"section": "04_outro"}
   ]
 }

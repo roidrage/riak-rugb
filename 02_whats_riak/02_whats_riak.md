@@ -7,15 +7,20 @@
 * Scalable
 * Really, really scalable
 
+!SLIDE center
+
+    brew install riak
+
 !SLIDE
 
-## Inspired by [Amazon's Dynamo](http://www.allthingsdistributed.com/2007/10/amazons_dynamo.html) ##
+## Heavily inspired by [Amazon's Dynamo](http://www.allthingsdistributed.com/2007/10/amazons_dynamo.html) ##
 
 !SLIDE bullets incremental
 
 # Basics #
 
 * Data is partitioned into slices
+* Hashed on a 160 bit integer space
 * A server can serve multiple slices (vnodes)
 
 !SLIDE center
@@ -57,6 +62,14 @@
 * Buckets are like flat namespaces
 * Sane HTTP interface
 * Protobufs if you want to
+
+!SLIDE bullets incremental
+
+# Riak Basics #
+
+* Erlang (Munctional!!!)
+* Pluggable storage
+* Default: Bitcask
 
 !SLIDE bullets incremental
 
@@ -263,6 +276,7 @@
 
 # Map/Reduce #
 
+* Requires an input list
 * One or more map phases
 * None or more reduce phases
 * None or more link phases
@@ -277,7 +291,7 @@
 
 !SLIDE code smaller
 
-# Map/Reduce #
+# Map/Reduce (real simple)#
 
     $ curl -D - -X POST localhost:8098/mapred \
     -H "Content-Type: application/json" \
@@ -291,3 +305,4 @@
           {"language": "javascript",
            "source": "Riak.reduceSort"}}
     ]}
+
