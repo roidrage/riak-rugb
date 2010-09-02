@@ -6,6 +6,8 @@
 * Distributed
 * Scalable
 * Really, really scalable
+* Made by [Basho](http://basho.com)
+* Eventually consistent
 
 !SLIDE center
 
@@ -20,8 +22,9 @@
 # Basics #
 
 * Data is partitioned into slices
+* Partition = virtual node
 * Hashed on a 160 bit integer space
-* A server can serve multiple slices (vnodes)
+* A server can serve multiple slices
 
 !SLIDE center
 
@@ -48,7 +51,17 @@
 
 * Data is replicated across N nodes
 * Data must be read from R nodes
+* Read Repairs update outdated nodes
 * Data must be written to W nodes
+
+!SLIDE bullets incremental
+
+# Failover #
+
+* Servers do fail!
+* Hinted handoff during downtimes
+* Other nodes accept writes for failed nodes
+* Resync when node comes back up
 
 !SLIDE center
 
@@ -60,7 +73,7 @@
 
 * Buckets, keys, values
 * Buckets are like flat namespaces
-* Sane HTTP interface
+* Sane, RESTful HTTP interface
 * Protobufs if you want to
 
 !SLIDE bullets incremental
@@ -69,7 +82,15 @@
 
 * Erlang (Munctional!!!)
 * Pluggable storage
-* Default: Bitcask
+* Default: [Bitcask](http://blog.basho.com/2010/04/27/hello,-bitcask/)
+
+!SLIDE bullets incremental
+
+# Objects #
+
+* Any type (binary)
+* Or JSON documents
+* Limited to ~60 MB
 
 !SLIDE bullets incremental
 

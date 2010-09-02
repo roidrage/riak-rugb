@@ -7,6 +7,7 @@
 * It's not perfect for everything
 * Certainly not a replacement for MySQL
 * Listing all keys in a bucket was a problem
+* Object size limit recommended around 50-60MB
 
 !SLIDE
 
