@@ -84,10 +84,13 @@
 
 * Riak objects can have links to other objects
 * Links can be tagged
+* Objects always have an uplink to their bucket
 
-!SLIDE
+!SLIDE bullets incremental
 
 # A conversation with Riak #
+
+* Warning: There will be HTTP
 
 !SLIDE commandline incremental small
 
@@ -175,6 +178,13 @@
     -d '{"version": "1.0.0"}' \
     localhost:8098/riak/rubies/rbx
 
+!SLIDE smaller
+
+    $ curl -D - -X POST -H "Content-Type: application/json" \          
+    -H 'Link: </riak/rubies/mri>; riaktag="incompatible"' \
+    -d '{"version": "0.6"}' \  
+    localhost:8098/riak/rubies/macruby
+
 !SLIDE smaller commandline incremental
 
 # Links #
@@ -193,3 +203,91 @@
 
     {"version": "1.0.0"}
 
+!SLIDE smaller commandline incremental
+
+# Walking Links #
+
+    $ curl -D - localhost:8098/riak/rubies/rbx/_,llvm,_
+    HTTP/1.1 200 OK
+    ...
+    Content-Type: multipart/mixed; boundary=QVzlBS0eP4wma1FgTQHG48pWsNO
+    --2AvZHUf1P6Vu1loZ2c6QW8ywk6s
+    X-Riak-Vclock: a85hYGBgzGDKBVIszNvtV2QwJTLmsTKYyX05ypcFAA==
+    Location: /riak/rubies/macruby
+    Content-Type: application/json
+    Link: </riak/rubies>; rel="up"
+    Etag: z0hqVp2kYkT0vFYyWtub6
+    Last-Modified: Thu, 02 Sep 2010 13:10:14 GMT
+
+    {"version": "0.6"}
+    --2AvZHUf1P6Vu1loZ2c6QW8ywk6s--
+
+!SLIDE smaller commandline incremental
+
+# Walking Nested Links #
+
+    $ curl -D - localhost:8098/riak/rubies/rbx/_,llvm,_/_,incompatible,_/
+    HTTP/1.1 200 OK
+    ...
+    Content-Type: multipart/mixed; boundary=7D3wLfYH6zjsblEzVA0rvIhi7wS
+    --7D3wLfYH6zjsblEzVA0rvIhi7wS
+    X-Riak-Vclock: a85hYGBgzGDKBVIsTAs02TOYEhnzWBk05L4c5csCAA==
+    Location: /riak/rubies/mri
+    Content-Type: application/json
+    Link: </riak/rubies>; rel="up"
+    Etag: 4JQRo8nYoGM6W4lFKWErxQ
+    Last-Modified: Thu, 02 Sep 2010 13:10:00 GMT
+
+    {"version": "1.9.2"}
+    --7D3wLfYH6zjsblEzVA0rvIhi7wS--
+    
+!SLIDE bullets incremental
+
+# Use Cases for Links #
+
+* Associations (has_one, has_many)
+* Chain similar objects
+* More on [link walking](http://blog.basho.com/2010/02/24/link-walking-by-example/)
+* Tag objects with similar context
+
+!SLIDE bullets incremental
+
+# Map/Reduce #
+
+* Query data with Erlang or JavaScript
+* Transform data (map)
+* Group data (reduce)
+* Don't think CouchDB
+
+!SLIDE bullets incremental
+
+# Map/Reduce #
+
+* One or more map phases
+* None or more reduce phases
+* None or more link phases
+
+!SLIDE bullets incremental
+
+# Map/Reduce #
+
+* Map phases are run near the data
+* Reduce phase on the coordinating node
+* [More on Map/Reduce in Riak](http://wiki.basho.com/display/RIAK/MapReduce)
+
+!SLIDE code smaller
+
+# Map/Reduce #
+
+    $ curl -D - -X POST localhost:8098/mapred \
+    -H "Content-Type: application/json" \
+    -d @-
+    {"inputs": [["rubies", "rbx"], ["rubies", "macruby"]],
+      "query": [
+        {"map":
+          {"language": "javascript",
+           "source": "Riak.mapValues"}},
+        {"reduce":
+          {"language": "javascript",
+           "source": "Riak.reduceSort"}}
+    ]}
