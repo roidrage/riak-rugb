@@ -43,12 +43,13 @@
 * All nodes are equal
 * Nodes can join and leave anytime
 * Cluster rebalances partitions
-* Easy scale-up and -down
+* Gossip protocol
 
 !SLIDE bullets incremental
 
 # Replication #
 
+* Ideally...
 * Data is replicated across N nodes
 * Data must be read from R nodes
 * Read Repairs update outdated nodes
@@ -58,8 +59,8 @@
 
 # Failover #
 
-* Servers do fail!
-* Hinted handoff during downtimes
+* Servers do fail
+* Hinted handoff to neighbors during downtimes
 * Other nodes accept writes for failed nodes
 * Resync when node comes back up
 
@@ -74,7 +75,7 @@
 * Buckets, keys, values
 * Buckets are like flat namespaces
 * Sane, RESTful HTTP interface
-* Protobufs if you want to
+* Or Protobufs for speed
 
 !SLIDE bullets incremental
 
