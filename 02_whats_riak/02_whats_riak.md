@@ -81,7 +81,7 @@
 
 # Riak Basics #
 
-* Erlang (Munctional!!!)
+* Erlang ([Munctional!!!](http://www.youtube.com/watch?v=1yH_j8-VVLo))
 * Pluggable storage
 * Default: [Bitcask](http://blog.basho.com/2010/04/27/hello,-bitcask/)
 
