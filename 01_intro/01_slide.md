@@ -1,8 +1,8 @@
-!SLIDE center
+!SLIDE  center
 
-# Riak #
+![Riak](riak-logo-big.png)
 
-### Mathias Meyer/RUG-B ###
+### Mathias Meyer ###
 
 !SLIDE bullets incremental
 # $(this) #
@@ -16,5 +16,4 @@
 
 ![Scalarium](scalarium.png)
 
-## Cloud-Management and -Deployment for Ruby and Rails ##
-
+## [Cloud-Management and -Deployment for Ruby and Rails](http://scalarium.com) ##
