@@ -1,0 +1,7 @@
+{
+  "name": "Riak",
+  "sections": [
+    {"section": "01_intro"},
+    {"section": "02_whats_riak"}
+  ]
+}
