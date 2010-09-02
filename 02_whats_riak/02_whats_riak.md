@@ -7,7 +7,6 @@
 * Scalable
 * Really, really scalable
 * Made by [Basho](http://basho.com)
-* Eventually consistent
 
 !SLIDE center
 
