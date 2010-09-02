@@ -330,3 +330,16 @@
            "source": "Riak.reduceSort"}}
     ]}
 
+!SLIDE bullets incremental
+
+# Pre-Commit Hooks #
+
+* Validate an object
+* Modify an object
+* Fail a write
+
+!SLIDE bullets incremental
+
+# Post-Commit Hooks #
+
+* Do whatever...
