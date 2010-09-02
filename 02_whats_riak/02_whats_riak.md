@@ -55,6 +55,10 @@
 * Read Repairs update outdated nodes
 * Data must be written to W nodes
 
+!SLIDE center
+
+![Replication](riak-data-distribution.png)
+
 !SLIDE bullets incremental
 
 # Failover #
@@ -63,10 +67,6 @@
 * Hinted handoff to neighbors during downtimes
 * Other nodes accept writes for failed nodes
 * Resync when node comes back up
-
-!SLIDE center
-
-![Replication](riak-data-distribution.png)
 
 !SLIDE bullets incremental
 
@@ -131,7 +131,7 @@
 
 # Get Bucket Properties #
 
-    $ curl -D - http://localhost:8098/riak/rubies
+    $ curl -D - localhost:8098/riak/rubies
     HTTP/1.1 200 OK
     Vary: Accept-Encoding
     Server: MochiWeb/1.1 WebMachine/1.7.1 (participate in the frantic)
@@ -150,13 +150,13 @@
 
     $ curl -D - PUT -H "Content-Type: application/json" \
       -d '{"props":{"n_val":5}}' \
-      http://localhost:8098/riak/rubies
+      localhost:8098/riak/rubies
 
 !SLIDE smaller commandline incremental
 
 # Fetch an Object #
 
-    $ curl -D - http://localhost:8098/riak/rubies/rbx
+    $ curl -D - localhost:8098/riak/rubies/rbx
     HTTP/1.1 404 Object Not Found
     Server: MochiWeb/1.1 WebMachine/1.7.1 (participate in the frantic)
     Date: Thu, 02 Sep 2010 12:42:23 GMT
@@ -173,8 +173,10 @@
 
 # Create an Object #
 
-    $ curl -D - -X PUT -H "Content-Type: application/json" \
-    -d '{"version": "1.0"}' localhost:8098/riak/rubies/rbx
+    $ curl -D - -X PUT \
+    -H "Content-Type: application/json" \
+    -d '{"version": "1.0"}' \
+    localhost:8098/riak/rubies/rbx
 
 !SLIDE smaller
 
@@ -224,7 +226,7 @@
 
 # Links #
 
-    $ curl -D - http://localhost:8098/riak/rubies/rbx        
+    $ curl -D - localhost:8098/riak/rubies/rbx        
     HTTP/1.1 200 OK
     X-Riak-Vclock: a85hYGBgzmDKBVIszLIxwhlMiYx5rAzTJL4c5YMKM3oGrIMKH5CGC7M1JzGd1C9DlsgCAA==
     Vary: Accept-Encoding
