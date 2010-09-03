@@ -3,6 +3,7 @@
 ![Riak](riak-logo-big.png)
 
 ### Mathias Meyer ###
+#### Ruby User Group Berlin ####
 
 !SLIDE bullets
 # $(this) #
